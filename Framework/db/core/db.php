@@ -4,6 +4,7 @@ namespace ClickBlocks\DB;
 
 use ClickBlocks\Core,
     ClickBlocks\Cache;
+use Doctrine\DBAL\Driver\PDOConnection;
 
 /**
  * @property SQLBuilder $sql
@@ -47,7 +48,15 @@ class DB implements IDB
    public function connect($dsn, $username, $password, $options = null)
    {
       $this->parseDSN($dsn);
-      $this->pdo = new \PDO($dsn, $username, $password, $options);
+   
+      /**
+       * I used Laravel PDO instead of Clickblocks own PDO,
+       * to have one common DB connection instead of couple of connections.
+       *
+       * @var PDOConnection $pdo
+       */
+      $pdo = \DB::connection()->getPdo();
+      $this->pdo = $pdo;
       $this->sql = new SQLBuilder($this->dsn);
    }
 
