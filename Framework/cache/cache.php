@@ -133,6 +133,9 @@ class Cache
    {
       switch ($type)
       {
+         case 'Laravel':
+           require_once(__DIR__ . '/laravel.php');
+           break;
          case 'Redis':
            require_once(__DIR__ . '/redis.php');
            break;

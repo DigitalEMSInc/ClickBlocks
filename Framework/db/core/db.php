@@ -121,6 +121,26 @@ class DB implements IDB
       }
       $logger = Core\Logger::getInstance();
       $logger->pStart('db_sql_log');
+   
+      $oldAttributes = [
+          \PDO::ATTR_CASE => $this->pdo->getAttribute(\PDO::ATTR_CASE),
+          \PDO::ATTR_ERRMODE => $this->pdo->getAttribute(\PDO::ATTR_ERRMODE),
+          \PDO::ATTR_ORACLE_NULLS => $this->pdo->getAttribute(\PDO::ATTR_ORACLE_NULLS),
+          \PDO::ATTR_EMULATE_PREPARES => $this->pdo->getAttribute(\PDO::ATTR_EMULATE_PREPARES),
+          \PDO::ATTR_STATEMENT_CLASS => $this->pdo->getAttribute(\PDO::ATTR_STATEMENT_CLASS),
+      ];
+      $setAttributes = [
+          \PDO::ATTR_CASE => \PDO::CASE_NATURAL,
+          \PDO::ATTR_ERRMODE => \PDO::ERRMODE_SILENT,
+          \PDO::ATTR_ORACLE_NULLS => \PDO::NULL_NATURAL,
+          \PDO::ATTR_EMULATE_PREPARES => true,
+          \PDO::ATTR_STATEMENT_CLASS => [\PDOStatement::class],
+      ];
+      foreach ($setAttributes as $attribute => $value) {
+         if ($value !== $oldAttributes[$attribute]) {
+            $this->pdo->setAttribute($attribute, $value);
+         }
+      }
       $st = $this->pdo->prepare($sql);
       if (!$st->execute($data))
       {
@@ -131,6 +151,11 @@ class DB implements IDB
             self::$statistic[$this->dsn['dsn']][] = array('sql' => $sql, 'data' => $data, 'type' => $type, 'style' => $style, 'time' => $time, 'datetime' => date('Y-m-d H:i:s'));
             Core\Debugger::exceptionHandler(new \Exception($this->error[2]), Core\Logger::LOG_CATEGORY_SQL_EXCEPTION);
             exit;
+         }
+      }
+      foreach ($oldAttributes as $attribute => $value) {
+         if ($value !== $setAttributes[$attribute]) {
+            $this->pdo->setAttribute($attribute, $value);
          }
       }
       $this->affectedRows = $st->rowCount();
