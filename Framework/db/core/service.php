@@ -246,7 +246,14 @@ class Service implements IService
    {
       $key = $this->getObjectsCacheKey();
       $objs = $this->cache->get($key);
-      if (is_array($objs)) unset($objs[get_class($this)][$cacheID]);
+      if (is_array($objs)) {
+         $class = get_class($this);
+         $obj = array_key_exists($class, $objs) ? $objs[$class] : null;
+         if ($obj && array_key_exists($cacheID, $obj)) {
+            unset($obj[$cacheID]);
+            $objs[$class] = $obj;
+         }
+      }
       $this->cache->set($key, $objs, $this->config['orm']['cacheBLLObjectExpire']);
    }
 

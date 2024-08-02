@@ -3,6 +3,8 @@
 namespace ClickBlocks\Core;
 
 use ClickBlocks\Web;
+use DOMNode;
+use ReturnTypeWillChange;
 
 class DOMDocumentEx extends \DOMDocument
 {
@@ -16,7 +18,7 @@ class DOMDocumentEx extends \DOMDocument
       parent::__construct($version, ($charset) ?: Register::getInstance()->config->charset);
    }
 
-   public function loadHTML($source, $options = 0)
+   public function loadHTML($source, $options = 0): bool
    {
       Debugger::setErrorReporting(E_ALL & ~E_NOTICE & ~E_WARNING);
       $res = parent::loadHTML(Web\XHTMLParser::encodePHPTags($source));
@@ -24,7 +26,7 @@ class DOMDocumentEx extends \DOMDocument
       return $res;
    }
 
-   public function loadHTMLFile($filename, $options = 0)
+   public function loadHTMLFile($filename, $options = 0): bool
    {
       Debugger::setErrorReporting(E_ALL & ~E_NOTICE & ~E_WARNING);
       $res = $this->loadHTML(file_get_contents($filename), $options);
@@ -32,36 +34,36 @@ class DOMDocumentEx extends \DOMDocument
       return $res;
    }
 
-   public function saveHTML()
+   public function saveHTML(DOMNode $node = null): false|string
    {
       return Web\XHTMLParser::decodePHPTags(parent::saveHTML());
    }
 
-   public function saveHTMLFile($filename)
+   public function saveHTMLFile($filename): int|false
    {
       return file_put_contents($filename, $this->saveHTML());
    }
 
-   public function getHTML()
+   public function getHTML(): string
    {
       return $this->getInnerHTML($this->documentElement->firstChild);
    }
 
-   public function insert($id, $html)
+   public function insert($id, $html): void
    {
       $el = $this->getElementById($id);
       if ($el == null) throw new \Exception(err_msg('ERR_DOM_1', array($id)));
       $this->setInnerHTML($el, $html);
    }
 
-   public function replace($id, $html)
+   public function replace($id, $html): void
    {
       $el = $this->getElementById($id);
       if ($el == null) throw new \Exception(err_msg('ERR_DOM_1', array($id)));
       $el->parentNode->replaceChild($this->HTMLToNode($html), $el);
    }
 
-   public function inject($id, $html, $mode = self::DOM_INJECT_TOP)
+   public function inject($id, $html, $mode = self::DOM_INJECT_TOP): void
    {
       $el = $this->getElementById($id);
       if ($el == null) throw new \Exception(err_msg('ERR_DOM_1', array($id)));
@@ -83,7 +85,7 @@ class DOMDocumentEx extends \DOMDocument
       }
    }
 
-   public function getInnerHTML(\DOMNode $node)
+   public function getInnerHTML(DOMNode $node): string
    {
       foreach ($node->childNodes as $child)
       {
@@ -94,17 +96,17 @@ class DOMDocumentEx extends \DOMDocument
       return Web\XHTMLParser::decodePHPTags($html);
    }
 
-   public function setInnerHTML(\DOMNode $node, $html)
+   public function setInnerHTML(DOMNode $node, $html): void
    {
       $node->nodeValue = '';
       foreach ($node->childNodes as $child) $node->removeChild($child);
       $node->appendChild($this->HTMLToNode($html));
    }
 
-   public function HTMLToNode($html)
+   public function HTMLToNode($html): DOMNode|\DOMText|false
    {
       if ($html == '') return new \DOMText('');
-      $dom = new DOMDocumentEx($this->version, $this->encoding);
+      $dom = new DOMDocumentEx('1.0', $this->encoding);
       $dom->loadHTML($html);
       $node = $this->importNode($dom->documentElement->firstChild->firstChild, true);
       if (!preg_match('/^<[a-zA-Z].*/', $html)) $node = new \DOMText(Web\XHTMLParser::encodePHPTags($html));

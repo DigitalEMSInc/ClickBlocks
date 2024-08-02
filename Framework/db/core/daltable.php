@@ -135,7 +135,9 @@ class DALTable implements IDALTable, \Serializable
    public function isKeyFilled()
    {
       $flag = true;
-      foreach ($this->info['pk'] as $field) $flag &= (strlen($this->info['fields'][$field]['value']) != 0);
+      foreach ($this->info['pk'] as $field) $flag &= (
+          isset($this->info['fields'][$field]['value']) && strlen($this->info['fields'][$field]['value']) != 0
+      );
       return (bool)$flag;
    }
 
@@ -158,7 +160,7 @@ class DALTable implements IDALTable, \Serializable
          if ($this->info['fields'][$field]['autoincrement']) throw new \LogicException(err_msg('ERR_DAL_2', array($field)));
       }
       if (is_object($value)) throw new Exceptions\IncorrectValueException(err_msg('ERR_DAL_1', array($field)));
-      if ($value !== $this->info['fields'][$field]['value'])
+      if ($value !== ($this->info['fields'][$field]['value'] ?? null))
       {
          $this->isUpdated = true;
          $this->isSaved = false;
@@ -181,7 +183,7 @@ class DALTable implements IDALTable, \Serializable
          throw new \Exception(err_msg('ERR_DAL_4', array($field, $this->getTable())));
       }
       if (isset($this->info['fields'][$field]['getter'])) return call_user_func_array(array($this, $this->info['fields'][$field]['getter']['name']), array($this->info['fields'][$field]['value']));
-      return $this->info['fields'][$field]['value'];
+      return $this->info['fields'][$field]['value'] ?? null;
    }
 
    public function __isset($field)
@@ -292,6 +294,7 @@ class DALTable implements IDALTable, \Serializable
 
    public function save()
    {
+      $res = null;
       if (!$this->isInstantiated) $res = $this->insert();
       else if ($this->isUpdated) $res = $this->update();
       $this->isSaved = true;
@@ -382,15 +385,15 @@ class DALTable implements IDALTable, \Serializable
          if (!$isReplace && $value['autoincrement']) continue;
          if (isset($value['set'])) $value['value'] = call_user_func_array(array($this, $value['set']['name']), array($value['value']));
          $len = $this->getLength($alias) + ($this->getPrecision($alias) ? $this->getPrecision($alias)+1 : 0);
-         if (($this->isNumericField($alias) || $this->isDateOrTimeField($alias)) && !strlen($value['value']))
+         if (($this->isNumericField($alias) || $this->isDateOrTimeField($alias)) && !strlen($value['value'] ?? ''))
          {
             if (strlen($value['default'])) $p[$field] = $value['default'];
             else $p[$field] = 'NULL';
          }
          else
          {
-            $p[$field] = $value['value'];
-            if ($len > 0 && $len < strlen($value['value'])) throw new \Exception(err_msg('ERR_DAL_7', array($alias)));
+            $p[$field] = $value['value'] ?? null;
+            if ($len > 0 && $len < strlen($value['value'] ?? '')) throw new \Exception(err_msg('ERR_DAL_7', array($alias)));
          }
       }
       return $p;

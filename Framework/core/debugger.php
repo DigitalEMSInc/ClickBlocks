@@ -255,6 +255,7 @@ class Debugger
       $stack = htmlspecialchars($stack);
       if (php_sapi_name() === 'cli')
       {
+         $data = null;
          if ($config->customDebugMethod && class_exists('\ClickBlocks\Core\Delegate', false))
          {
             $debug = new Delegate($config->customDebugMethod);

@@ -18,7 +18,7 @@ class XHTMLParser
    protected static $validators = array();
    protected static $isParsing = false;
 
-   public static $controls = array('BODY' => 1, 'PANEL' => 1, 'WEBFORM' => 1, 'REPEATER' => 1, 'CHECKBOXGROUP' => 1, 'RADIOBUTTONGROUP' => 1, 'CKEDITOR' => 1,
+   public static $controls = array('BODY' => 1, 'PANEL' => 1, 'WEBFORM' => 1, 'REPEATER' => 1, 'CHECKBOXGROUP' => 1, 'RADIOBUTTONGROUP' => 1,
                                    'TEMPLATE' => 1, 'HIDDEN' => 1, 'UPLOAD' => 1, 'UPLOADBUTTON' => 1, 'TEXTLABEL' => 1, 'TEXTBOX' => 1, 'AUTOFILL' => 1,
                                    'PASSWORD' => 1, 'MEMO' => 1, 'IMAGE' => 1, 'TEXTBUTTON' => 1, 'IMAGEBUTTON' => 1, 'HYPERLINK' => 1, 'CHECKBOX' => 1,
                                    'RADIOBUTTON' => 1, 'SWITCHGROUP' => 1, 'NAVIGATOR' => 1, 'SQLDROPDOWNBOX' => 1, 'DROPDOWNBOX' => 1, 'VALIDATOR' => 1, 'WIDGET' => 1,

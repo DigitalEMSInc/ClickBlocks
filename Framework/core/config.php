@@ -40,6 +40,8 @@ namespace ClickBlocks\Core;
  */
 class Config implements \ArrayAccess
 {
+   private $container = [];
+   
    /**
     * Constructor of this class.
     *
@@ -51,29 +53,31 @@ class Config implements \ArrayAccess
    {
       $this->root = $_SERVER['DOCUMENT_ROOT'];
    }
-
+   
    public function offsetSet(mixed $offset, mixed $value): void
    {
-      $this->{$offset} = $value;
+      if (is_null($offset)) {
+         $this->container[] = $value;
+      } else {
+         $this->container[$offset] = $value;
+      }
    }
-
+   
    public function offsetGet(mixed $property): mixed
    {
-      if (isset($this->{$property})) return $this->{$property};
-      if (is_null($property)) throw new \Exception(err_msg('ERR_GENERAL_8', array(get_class($this))));
-      throw new \Exception(err_msg('ERR_GENERAL_3', array($property, get_class($this))));
+      return $this->container[$property] ?? null;
    }
-
+   
    public function offsetExists(mixed $property): bool
    {
-      return isset($this->{$property});
+      return isset($this->container[$property]);
    }
-
+   
    public function offsetUnset(mixed $offset): void
    {
-      unset($this->{$offset});
+      unset($this->container[$offset]);
    }
-
+   
    /**
     * Loads configuration parameters from a configuration file.
     *
@@ -90,11 +94,21 @@ class Config implements \ArrayAccess
       if ($data === false) throw new \Exception(err_msg('ERR_CONFIG_1', array($iniFile)));
       foreach ($data as $section => $properties)
       {
-         if ($section != 'general' && is_array($properties)) foreach ($properties as $k => $v) $this->{$section}[$k] = $v;
-         elseif ($section == 'general') foreach ($properties as $k => $v) $this->{$k} = $v;
-         else $this->{$section} = $properties;
+         if ($section != 'general' && is_array($properties)) foreach ($properties as $k => $v) $this->container[$section][$k] = $v;
+         elseif ($section == 'general') foreach ($properties as $k => $v) $this->container[$k] = $v;
+         else $this->container[$section] = $properties;
       }
       return true;
+   }
+   
+   public function __set(string $name, mixed $value): void
+   {
+      $this->container[$name] = $value;
+   }
+   
+   public function __get(string $name): mixed
+   {
+      return $this->container[$name] ?? null;
    }
 }
 

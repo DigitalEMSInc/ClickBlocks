@@ -198,11 +198,11 @@ class Logger
          $path = IO::dir('log') . '/' . date('Y F');
          IO::createDirectories($path);
          $file = $path . '/' . date('d (l)') . '.log';
-         $info = array('IP' => $_SERVER['REMOTE_ADDR'],
+         $info = array('IP' => $_SERVER['REMOTE_ADDR'] ?? null,
                        'ID' => session_id(),
                        'time' => date('m/d/Y H:i:s'),
                        'category' => $category,
-                       'url' => (substr($_SERVER['SERVER_PROTOCOL'], 0, 5) == 'HTTPS' ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+                       'url' => (substr($_SERVER['SERVER_PROTOCOL'] ?? '', 0, 5) == 'HTTPS' ? 'https://' : 'http://') . ($_SERVER['HTTP_HOST'] ?? '') . ($_SERVER['REQUEST_URI'] ?? ''),
                        'SESSION' => $_SESSION,
                        'COOKIE' => $_COOKIE,
                        'GET' => $_GET,

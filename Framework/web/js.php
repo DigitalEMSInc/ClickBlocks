@@ -17,7 +17,6 @@ abstract class JS
        'validators' => array('validators.js?v=1'),
        'autofill' => array('ajax', 'controls', 'autofill.js'),
        'uploadbutton' => array('controls', 'uploadbutton.js'),
-       'ckeditor' => array('ckeditor/ckeditor.js'),
        'tinymce' => array('tinymce/jscripts/tiny_mce/tiny_mce.js'),
        'colorpicker' => array('controls', 'colorpicker/js_color_picker_v2.js'),
        'raphael' => array('raphael.js'),

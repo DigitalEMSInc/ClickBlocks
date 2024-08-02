@@ -268,7 +268,7 @@ class SQLBuilder
 
    public function isSQL($str)
    {
-      return in_array(strtoupper($str), array('NULL', 'NOW()', 'CURRENT_TIMESTAMP'));
+      return in_array(strtoupper($str ?? ''), array('NULL', 'NOW()', 'CURRENT_TIMESTAMP'));
    }
 
    public static function getPHPDataType($type)

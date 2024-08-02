@@ -228,9 +228,10 @@ class BLLTable implements IBLLTable, \Serializable
       if (!$this->isCalledFromService())  {
          return self::getService()->insert($this);
       }
+      $res = 0;
       foreach ($this->dal as $dal)
       {
-         if ($ID) $dal->setKeyValue($ID);
+         if (isset($ID)) $dal->setKeyValue($ID);
          $res += $dal->insert();
          $ID = $dal->getKeyValue(false);
       }
@@ -243,6 +244,7 @@ class BLLTable implements IBLLTable, \Serializable
          self::getService()->delete($this);
          return true;
       }
+      $res = 0;
       foreach (array_reverse($this->dal) as $dal) $res += $dal->delete();
       return $res;
    }
@@ -253,6 +255,7 @@ class BLLTable implements IBLLTable, \Serializable
          self::getService()->update($this);
          return true;
       }
+      $res = 0;
       foreach ($this->dal as $dal) $res += $dal->update();
       return $res;
    }
