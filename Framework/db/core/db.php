@@ -184,7 +184,7 @@ class DB implements IDB
            break;
          case self::DB_COUPLE:
            $rows = $st->fetchAll(\PDO::FETCH_NUM); $res = array();
-           if (is_array($rows[0])) foreach ($rows as $v) $res[$v[0]] = $v[1];
+           if (!empty($rows) && is_array($rows[0])) foreach ($rows as $v) $res[$v[0]] = $v[1];
            break;
       }
       if ($this->cached && $this->reg->cache instanceof Cache\ICache && $type != self::DB_EXEC && $flag) $this->reg->cache->set($key, $res, $this->expire);
