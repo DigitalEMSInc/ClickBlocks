@@ -1,0 +1,32 @@
+{
+  "name": "saritasa/clickblocks",
+  "description": "ClickBlocks PHP framework © Saritasa",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sergey Milimko",
+      "email": "serg@saritasa.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "Framework/"
+    ],
+    "exclude-from-classmap": [
+      "Framework/_tests/"
+    ]
+  },
+  "scripts": {
+    "post-package-install": ""
+  },
+  "require": {
+    "php": "^7.2|^8.0"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev",
+      "dev-mobile-medic": "2.x-dev"
+    }
+  }
+}

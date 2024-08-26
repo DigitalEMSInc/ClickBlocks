@@ -1,0 +1,7 @@
+.coin-slider{overflow:hidden;zoom:1;position:relative;}
+.coin-slider a{text-decoration:none;outline:none;border:none;}
+.cs-buttons{font-size:0;padding:10px;text-align:center;}
+.cs-buttons a{margin-left:5px;margin-bottom:5px;display:inline-block;height:10px;width:10px;border:1px solid #B5121B;color:#FFFFFF;}
+.cs-active{background-color:#B5121B;color:#B5121B !important;}
+.cs-title{width:545px;background-color:#000;color:#FFF;padding:10px;}
+.cs-prev,.cs-next{background-color:#000;color:#FFF;padding:0 10px;}

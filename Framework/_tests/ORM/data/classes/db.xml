@@ -1,0 +1,1076 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <DataBase DB="orm_test_0" Name="db_test_0" Driver="mysql">
+    <ModelPhysical>
+      <Tables>
+        <Table Name="_test_Categories" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="categoryID"/>
+          </PrimaryKey>
+          <Field Name="categoryID" Type="int" Autoincrement="1" Unsigned="1" Length="10"/>
+          <Field Name="name" Type="varchar" Length="255"/>
+          <Field Name="parentCategoryID" Type="int" Null="1" Unsigned="1" Length="10"/>
+        </Table>
+        <Table Name="_test_Customers" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="customerID"/>
+          </PrimaryKey>
+          <Field Name="customerID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="phone" Type="varchar" Null="1" Length="40"/>
+          <Field Name="fax" Type="varchar" Null="1" Length="40"/>
+          <Field Name="country" Type="varchar" Null="1" Length="40"/>
+          <Field Name="parentCustomerID" Type="int" Null="1" Unsigned="1" Length="11"/>
+        </Table>
+        <Table Name="_test_DataTypes" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="ID"/>
+          </PrimaryKey>
+          <Field Name="ID" Type="int" Autoincrement="1" Unsigned="1" Length="11"/>
+          <Field Name="tpTINYINT" Type="tinyint" Null="1" Length="4"/>
+          <Field Name="tpSMALLINT" Type="smallint" Null="1" Length="6"/>
+          <Field Name="tpMEDIUMINT" Type="mediumint" Null="1" Length="9"/>
+          <Field Name="tpBIGINT" Type="bigint" Null="1" Length="20"/>
+          <Field Name="tpFLOAT" Type="float" Null="1" Length="9" Precision="3"/>
+          <Field Name="tpDOUBLE" Type="double" Null="1" Length="15" Precision="3"/>
+          <Field Name="tpDECIMAL" Type="decimal" Null="1" Length="11"/>
+          <Field Name="tpDATE" Type="date" Null="1"/>
+          <Field Name="tpDATETIME" Type="datetime" Null="1"/>
+          <Field Name="tpTIMESTAMP" Type="timestamp" Default="0000-00-00 00:00:00"/>
+          <Field Name="tpTIME" Type="time" Null="1"/>
+          <Field Name="tpYEAR" Type="year" Null="1" Length="4"/>
+          <Field Name="tpCHAR" Type="char" Null="1" Length="20"/>
+          <Field Name="tpVARCHAR" Type="varchar" Null="1" Length="20"/>
+          <Field Name="tpTINYBLOB" Type="tinyblob" Null="1"/>
+          <Field Name="tpBLOB" Type="blob" Null="1"/>
+          <Field Name="tpMEDIUMBLOB" Type="mediumblob" Null="1"/>
+          <Field Name="tpLONGBLOB" Type="longblob" Null="1"/>
+          <Field Name="tpTINYTEXT" Type="tinytext" Null="1"/>
+          <Field Name="tpTEXT" Type="text" Null="1"/>
+          <Field Name="tpMEDIUMTEXT" Type="mediumtext" Null="1"/>
+          <Field Name="tpLONGTEXT" Type="longtext" Null="1"/>
+          <Field Name="tpENUM" Type="enum" Null="1" Set="'one','two','three'"/>
+          <Field Name="tpSET" Type="set" Null="1" Set="'A','B','C','D','0'"/>
+          <Field Name="tpBINARY" Type="binary" Null="1" Length="1"/>
+          <Field Name="tpVARBINARY" Type="varbinary" Null="1" Length="1"/>
+          <Field Name="tpBIT" Type="bit" Null="1" Length="1"/>
+          <Field Name="tpBOOLEAN" Type="tinyint" Null="1" Length="1"/>
+        </Table>
+        <Table Name="_test_LookupOrderStatuses" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="statusID"/>
+          </PrimaryKey>
+          <Field Name="statusID" Type="char" Length="3"/>
+          <Field Name="status" Type="varchar" Length="40"/>
+        </Table>
+        <Table Name="_test_LookupProductAttributes" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="attributeID"/>
+          </PrimaryKey>
+          <Field Name="attributeID" Type="int" Autoincrement="1" Unsigned="1" Length="10"/>
+          <Field Name="categoryID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="attribute" Type="varchar" Length="40"/>
+        </Table>
+        <Table Name="_test_LookupUserTypes" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="typeID"/>
+          </PrimaryKey>
+          <Field Name="typeID" Type="char" Length="1"/>
+          <Field Name="typeName" Type="varchar" Length="40"/>
+        </Table>
+        <Table Name="_test_Managers" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="managerID"/>
+          </PrimaryKey>
+          <Field Name="managerID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="contractSigned" Type="datetime" Null="1"/>
+          <Field Name="salary" Type="float" Null="1"/>
+          <Field Name="fired" Type="datetime" Null="1"/>
+        </Table>
+        <Table Name="_test_OrderProductOptions" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="orderProductOptionID"/>
+          </PrimaryKey>
+          <Field Name="orderProductOptionID" Type="int" Autoincrement="1" Unsigned="1" Length="10"/>
+          <Field Name="orderID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="productID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="supplierID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="productAttributeID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="optionID" Type="int" Unsigned="1" Length="10"/>
+        </Table>
+        <Table Name="_test_OrderProducts" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="orderID"/>
+            <Ref Name="productID"/>
+            <Ref Name="supplierID"/>
+          </PrimaryKey>
+          <Field Name="orderID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="productID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="supplierID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="quantity" Type="int" Unsigned="1" Length="10"/>
+        </Table>
+        <Table Name="_test_Orders" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="orderID"/>
+          </PrimaryKey>
+          <Field Name="orderID" Type="int" Autoincrement="1" Unsigned="1" Length="10"/>
+          <Field Name="customerID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="created" Type="datetime" Null="1"/>
+          <Field Name="statusID" Type="char" Length="3"/>
+          <Field Name="managerID" Type="int" Unsigned="1" Length="10"/>
+        </Table>
+        <Table Name="_test_ProductAttributeOptions" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="optionID"/>
+          </PrimaryKey>
+          <Field Name="optionID" Type="int" Autoincrement="1" Unsigned="1" Length="10"/>
+          <Field Name="productAttributeID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="value" Type="varchar" Length="40"/>
+        </Table>
+        <Table Name="_test_ProductAttributes" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="productAttributeID"/>
+          </PrimaryKey>
+          <Field Name="productAttributeID" Type="int" Autoincrement="1" Unsigned="1" Length="10"/>
+          <Field Name="productID" Type="int" Null="1" Unsigned="1" Length="10"/>
+          <Field Name="attributeID" Type="int" Null="1" Unsigned="1" Length="10"/>
+        </Table>
+        <Table Name="_test_Products" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="productID"/>
+          </PrimaryKey>
+          <Field Name="productID" Type="int" Autoincrement="1" Unsigned="1" Length="10"/>
+          <Field Name="name" Type="varchar" Length="40"/>
+          <Field Name="description" Type="varchar" Length="255"/>
+          <Field Name="categoryID" Type="int" Null="1" Unsigned="1" Length="10"/>
+          <Field Name="managerID" Type="int" Null="1" Unsigned="1" Length="10"/>
+        </Table>
+        <Table Name="_test_Stock" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="productID"/>
+            <Ref Name="supplierID"/>
+          </PrimaryKey>
+          <Field Name="productID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="supplierID" Type="int" Unsigned="1" Length="10"/>
+          <Field Name="quantity" Type="int" Unsigned="1" Length="10" Default="0"/>
+          <Field Name="price" Type="float" Unsigned="1" Default="0"/>
+        </Table>
+        <Table Name="_test_Suppliers" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="supplierID"/>
+          </PrimaryKey>
+          <Field Name="supplierID" Type="int" Autoincrement="1" Unsigned="1" Length="10"/>
+          <Field Name="name" Type="varchar" Length="100"/>
+        </Table>
+        <Table Name="_test_Users" Engine="InnoDB" Charset="utf8">
+          <PrimaryKey>
+            <Ref Name="userID"/>
+          </PrimaryKey>
+          <Field Name="userID" Type="int" Autoincrement="1" Unsigned="1" Length="10"/>
+          <Field Name="typeID" Type="char" Length="1"/>
+          <Field Name="firstName" Type="varchar" Length="40"/>
+          <Field Name="lastName" Type="varchar" Length="40"/>
+          <Field Name="email" Type="varchar" Length="255"/>
+          <Field Name="password" Type="varchar" Length="20"/>
+          <Field Name="created" Type="datetime" Null="1"/>
+          <Field Name="updated" Type="datetime" Null="1"/>
+          <Field Name="deleted" Type="datetime" Null="1"/>
+          <Field Name="lastActivity" Type="datetime" Null="1"/>
+        </Table>
+      </Tables>
+    </ModelPhysical>
+    <ModelLogical>
+      <Tables>
+        <Table Name="Categories" Repository="_test_Categories">
+          <Fields>
+            <Field Name="CategoryID" Link="categoryID"/>
+            <Field Name="Name" Link="name"/>
+            <Field Name="ParentCategoryID" Link="parentCategoryID"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Parent" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Categories">
+                <Field Name="ParentCategoryID"/>
+              </From>
+              <To Repository="db_test_0.Categories">
+                <Field Name="CategoryID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Categories" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Categories">
+                <Field Name="CategoryID"/>
+              </From>
+              <To Repository="db_test_0.Categories">
+                <Field Name="ParentCategoryID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="LookupProductAttributes" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Categories">
+                <Field Name="CategoryID"/>
+              </From>
+              <To Repository="db_test_0.LookupProductAttributes">
+                <Field Name="CategoryID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Products" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Categories">
+                <Field Name="CategoryID"/>
+              </From>
+              <To Repository="db_test_0.Products">
+                <Field Name="CategoryID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="Customers" Repository="_test_Customers" Inherit="db_test_0.Users">
+          <Fields>
+            <Field Name="CustomerID" Link="customerID"/>
+            <Field Name="Phone" Link="phone"/>
+            <Field Name="Fax" Link="fax"/>
+            <Field Name="Country" Link="country"/>
+            <Field Name="ParentCustomerID" Link="parentCustomerID"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Users" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Customers">
+                <Field Name="CustomerID"/>
+              </From>
+              <To Repository="db_test_0.Users">
+                <Field Name="UserID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Orders" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Customers">
+                <Field Name="CustomerID"/>
+              </From>
+              <To Repository="db_test_0.Orders">
+                <Field Name="CustomerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Parent" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Customers">
+                <Field Name="ParentCustomerID"/>
+              </From>
+              <To Repository="db_test_0.Customers">
+                <Field Name="CustomerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Children" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Customers">
+                <Field Name="CustomerID"/>
+              </From>
+              <To Repository="db_test_0.Customers">
+                <Field Name="ParentCustomerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="DataTypes" Repository="_test_DataTypes">
+          <Fields>
+            <Field Name="ID" Link="ID"/>
+            <Field Name="tpTINYINT" Link="tpTINYINT"/>
+            <Field Name="tpSMALLINT" Link="tpSMALLINT"/>
+            <Field Name="tpMEDIUMINT" Link="tpMEDIUMINT"/>
+            <Field Name="tpBIGINT" Link="tpBIGINT"/>
+            <Field Name="tpFLOAT" Link="tpFLOAT"/>
+            <Field Name="tpDOUBLE" Link="tpDOUBLE"/>
+            <Field Name="tpDECIMAL" Link="tpDECIMAL"/>
+            <Field Name="tpDATE" Link="tpDATE"/>
+            <Field Name="tpDATETIME" Link="tpDATETIME"/>
+            <Field Name="tpTIMESTAMP" Link="tpTIMESTAMP"/>
+            <Field Name="tpTIME" Link="tpTIME"/>
+            <Field Name="tpYEAR" Link="tpYEAR"/>
+            <Field Name="tpCHAR" Link="tpCHAR"/>
+            <Field Name="tpVARCHAR" Link="tpVARCHAR"/>
+            <Field Name="tpTINYBLOB" Link="tpTINYBLOB"/>
+            <Field Name="tpBLOB" Link="tpBLOB"/>
+            <Field Name="tpMEDIUMBLOB" Link="tpMEDIUMBLOB"/>
+            <Field Name="tpLONGBLOB" Link="tpLONGBLOB"/>
+            <Field Name="tpTINYTEXT" Link="tpTINYTEXT"/>
+            <Field Name="tpTEXT" Link="tpTEXT"/>
+            <Field Name="tpMEDIUMTEXT" Link="tpMEDIUMTEXT"/>
+            <Field Name="tpLONGTEXT" Link="tpLONGTEXT"/>
+            <Field Name="tpENUM" Link="tpENUM"/>
+            <Field Name="tpSET" Link="tpSET"/>
+            <Field Name="tpBINARY" Link="tpBINARY"/>
+            <Field Name="tpVARBINARY" Link="tpVARBINARY"/>
+            <Field Name="tpBIT" Link="tpBIT"/>
+            <Field Name="tpBOOLEAN" Link="tpBOOLEAN"/>
+          </Fields>
+          <NavigationProperties/>
+          <LogicProperties/>
+        </Table>
+        <Table Name="LookupOrderStatuses" Repository="_test_LookupOrderStatuses">
+          <Fields>
+            <Field Name="StatusID" Link="statusID"/>
+            <Field Name="Status" Link="status"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Orders" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.LookupOrderStatuses">
+                <Field Name="StatusID"/>
+              </From>
+              <To Repository="db_test_0.Orders">
+                <Field Name="StatusID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="LookupProductAttributes" Repository="_test_LookupProductAttributes">
+          <Fields>
+            <Field Name="AttributeID" Link="attributeID"/>
+            <Field Name="CategoryID" Link="categoryID"/>
+            <Field Name="Attribute" Link="attribute"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Categories" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.LookupProductAttributes">
+                <Field Name="CategoryID"/>
+              </From>
+              <To Repository="db_test_0.Categories">
+                <Field Name="CategoryID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="ProductAttributes" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.LookupProductAttributes">
+                <Field Name="AttributeID"/>
+              </From>
+              <To Repository="db_test_0.ProductAttributes">
+                <Field Name="AttributeID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="LookupUserTypes" Repository="_test_LookupUserTypes">
+          <Fields>
+            <Field Name="TypeID" Link="typeID"/>
+            <Field Name="TypeName" Link="typeName"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Users" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.LookupUserTypes">
+                <Field Name="TypeID"/>
+              </From>
+              <To Repository="db_test_0.Users">
+                <Field Name="TypeID"/>
+              </To>
+              <Select Output="raw"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="Managers" Repository="_test_Managers">
+          <Fields>
+            <Field Name="ManagerID" Link="managerID"/>
+            <Field Name="ContractSigned" Link="contractSigned"/>
+            <Field Name="Salary" Link="salary"/>
+            <Field Name="Fired" Link="fired"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Users" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Managers">
+                <Field Name="ManagerID"/>
+              </From>
+              <To Repository="db_test_0.Users">
+                <Field Name="UserID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Orders" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Managers">
+                <Field Name="ManagerID"/>
+              </From>
+              <To Repository="db_test_0.Orders">
+                <Field Name="ManagerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Products" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Managers">
+                <Field Name="ManagerID"/>
+              </From>
+              <To Repository="db_test_0.Products">
+                <Field Name="ManagerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="OrderProductOptions" Repository="_test_OrderProductOptions">
+          <Fields>
+            <Field Name="OrderProductOptionID" Link="orderProductOptionID"/>
+            <Field Name="OrderID" Link="orderID"/>
+            <Field Name="ProductID" Link="productID"/>
+            <Field Name="SupplierID" Link="supplierID"/>
+            <Field Name="ProductAttributeID" Link="productAttributeID"/>
+            <Field Name="OptionID" Link="optionID"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Suppliers" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.OrderProductOptions">
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.Suppliers">
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="OrderProducts" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.OrderProductOptions">
+                <Field Name="OrderID"/>
+                <Field Name="ProductID"/>
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.OrderProducts">
+                <Field Name="OrderID"/>
+                <Field Name="ProductID"/>
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="ProductAttributeOptions" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.OrderProductOptions">
+                <Field Name="OptionID"/>
+              </From>
+              <To Repository="db_test_0.ProductAttributeOptions">
+                <Field Name="OptionID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="ProductAttributes" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.OrderProductOptions">
+                <Field Name="ProductAttributeID"/>
+              </From>
+              <To Repository="db_test_0.ProductAttributes">
+                <Field Name="ProductAttributeID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Products" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.OrderProductOptions">
+                <Field Name="ProductID"/>
+              </From>
+              <To Repository="db_test_0.Products">
+                <Field Name="ProductID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="OrderProducts" Repository="_test_OrderProducts">
+          <Fields>
+            <Field Name="OrderID" Link="orderID"/>
+            <Field Name="ProductID" Link="productID"/>
+            <Field Name="SupplierID" Link="supplierID"/>
+            <Field Name="Quantity" Link="quantity"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Suppliers" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.OrderProducts">
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.Suppliers">
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Orders" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.OrderProducts">
+                <Field Name="OrderID"/>
+              </From>
+              <To Repository="db_test_0.Orders">
+                <Field Name="OrderID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Products" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.OrderProducts">
+                <Field Name="ProductID"/>
+              </From>
+              <To Repository="db_test_0.Products">
+                <Field Name="ProductID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Stock" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.OrderProducts">
+                <Field Name="ProductID"/>
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.Stock">
+                <Field Name="ProductID"/>
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="OrderProductOptions" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.OrderProducts">
+                <Field Name="OrderID"/>
+                <Field Name="ProductID"/>
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.OrderProductOptions">
+                <Field Name="OrderID"/>
+                <Field Name="ProductID"/>
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="Orders" Repository="_test_Orders">
+          <Fields>
+            <Field Name="OrderID" Link="orderID"/>
+            <Field Name="CustomerID" Link="customerID"/>
+            <Field Name="Created" Link="created"/>
+            <Field Name="StatusID" Link="statusID"/>
+            <Field Name="ManagerID" Link="managerID"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Managers" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Orders">
+                <Field Name="ManagerID"/>
+              </From>
+              <To Repository="db_test_0.Managers">
+                <Field Name="ManagerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Customers" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Orders">
+                <Field Name="CustomerID"/>
+              </From>
+              <To Repository="db_test_0.Customers">
+                <Field Name="CustomerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="LookupOrderStatuses" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Orders">
+                <Field Name="StatusID"/>
+              </From>
+              <To Repository="db_test_0.LookupOrderStatuses">
+                <Field Name="StatusID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="OrderProducts" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Orders">
+                <Field Name="OrderID"/>
+              </From>
+              <To Repository="db_test_0.OrderProducts">
+                <Field Name="OrderID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="ProductAttributeOptions" Repository="_test_ProductAttributeOptions">
+          <Fields>
+            <Field Name="OptionID" Link="optionID"/>
+            <Field Name="ProductAttributeID" Link="productAttributeID"/>
+            <Field Name="Value" Link="value"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="ProductAttributes" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.ProductAttributeOptions">
+                <Field Name="ProductAttributeID"/>
+              </From>
+              <To Repository="db_test_0.ProductAttributes">
+                <Field Name="ProductAttributeID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="OrderProductOptions" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.ProductAttributeOptions">
+                <Field Name="OptionID"/>
+              </From>
+              <To Repository="db_test_0.OrderProductOptions">
+                <Field Name="OptionID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="ProductAttributes" Repository="_test_ProductAttributes">
+          <Fields>
+            <Field Name="ProductAttributeID" Link="productAttributeID"/>
+            <Field Name="ProductID" Link="productID"/>
+            <Field Name="AttributeID" Link="attributeID"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="LookupProductAttributes" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.ProductAttributes">
+                <Field Name="AttributeID"/>
+              </From>
+              <To Repository="db_test_0.LookupProductAttributes">
+                <Field Name="AttributeID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Products" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.ProductAttributes">
+                <Field Name="ProductID"/>
+              </From>
+              <To Repository="db_test_0.Products">
+                <Field Name="ProductID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="OrderProductOptions" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.ProductAttributes">
+                <Field Name="ProductAttributeID"/>
+              </From>
+              <To Repository="db_test_0.OrderProductOptions">
+                <Field Name="ProductAttributeID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="ProductAttributeOptions" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.ProductAttributes">
+                <Field Name="ProductAttributeID"/>
+              </From>
+              <To Repository="db_test_0.ProductAttributeOptions">
+                <Field Name="ProductAttributeID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="Products" Repository="_test_Products">
+          <Fields>
+            <Field Name="ProductID" Link="productID"/>
+            <Field Name="Name" Link="name"/>
+            <Field Name="Description" Link="description"/>
+            <Field Name="CategoryID" Link="categoryID"/>
+            <Field Name="ManagerID" Link="managerID"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Managers" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Products">
+                <Field Name="ManagerID"/>
+              </From>
+              <To Repository="db_test_0.Managers">
+                <Field Name="ManagerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Categories" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Products">
+                <Field Name="CategoryID"/>
+              </From>
+              <To Repository="db_test_0.Categories">
+                <Field Name="CategoryID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="OrderProductOptions" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Products">
+                <Field Name="ProductID"/>
+              </From>
+              <To Repository="db_test_0.OrderProductOptions">
+                <Field Name="ProductID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="OrderProducts" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Products">
+                <Field Name="ProductID"/>
+              </From>
+              <To Repository="db_test_0.OrderProducts">
+                <Field Name="ProductID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="ProductAttributes" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Products">
+                <Field Name="ProductID"/>
+              </From>
+              <To Repository="db_test_0.ProductAttributes">
+                <Field Name="ProductID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Stock" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Products">
+                <Field Name="ProductID"/>
+              </From>
+              <To Repository="db_test_0.Stock">
+                <Field Name="ProductID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="Stock" Repository="_test_Stock">
+          <Fields>
+            <Field Name="ProductID" Link="productID"/>
+            <Field Name="SupplierID" Link="supplierID"/>
+            <Field Name="Quantity" Link="quantity"/>
+            <Field Name="Price" Link="price"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="Suppliers" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Stock">
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.Suppliers">
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Products" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Stock">
+                <Field Name="ProductID"/>
+              </From>
+              <To Repository="db_test_0.Products">
+                <Field Name="ProductID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="OrderProducts" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Stock">
+                <Field Name="ProductID"/>
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.OrderProducts">
+                <Field Name="ProductID"/>
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="Suppliers" Repository="_test_Suppliers">
+          <Fields>
+            <Field Name="SupplierID" Link="supplierID"/>
+            <Field Name="Name" Link="name"/>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="OrderProductOptions" Multiplicity="1" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Suppliers">
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.OrderProductOptions">
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="OrderProducts" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Suppliers">
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.OrderProducts">
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Stock" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Suppliers">
+                <Field Name="SupplierID"/>
+              </From>
+              <To Repository="db_test_0.Stock">
+                <Field Name="SupplierID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties/>
+        </Table>
+        <Table Name="Users" Repository="_test_Users">
+          <Fields>
+            <Field Name="UserID" Link="userID"/>
+            <Field Name="TypeID" Link="typeID"/>
+            <Field Name="FirstName" Link="firstName"/>
+            <Field Name="LastName" Link="lastName"/>
+            <Field Name="Email" Link="email"/>
+            <Field Name="Password" Link="password"/>
+            <Field Name="Created" Link="created"/>
+            <Field Name="Updated" Link="updated"/>
+            <Field Name="Deleted" Link="deleted"/>
+            <Field Name="LastActivity" Link="lastActivity">
+              <Setter Type="code">
+                <Code>return ($value) ? Core\DT::format($value, 'm/d/Y H:i:s', 'Y-m-d H:i:s') : null;</Code>
+              </Setter>
+              <Getter Type="code">
+                <Code>return ($value) ? Core\DT::format($value, 'Y-m-d H:i:s', 'm/d/Y H:i:s') : null;</Code>
+              </Getter>
+            </Field>
+          </Fields>
+          <NavigationProperties>
+            <Property Name="LookupUserTypes" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="0">
+              <From Repository="db_test_0.Users">
+                <Field Name="TypeID"/>
+              </From>
+              <To Repository="db_test_0.LookupUserTypes">
+                <Field Name="TypeID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Customers" Multiplicity="0" Insertable="0" Updateable="0" Deleteable="0" Readable="1">
+              <From Repository="db_test_0.Users">
+                <Field Name="UserID"/>
+              </From>
+              <To Repository="db_test_0.Customers">
+                <Field Name="CustomerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+            <Property Name="Managers" Multiplicity="0" Insertable="1" Updateable="1" Deleteable="1" Readable="1">
+              <From Repository="db_test_0.Users">
+                <Field Name="UserID"/>
+              </From>
+              <To Repository="db_test_0.Managers">
+                <Field Name="ManagerID"/>
+              </To>
+              <Select Output="object"/>
+            </Property>
+          </NavigationProperties>
+          <LogicProperties>
+            <Property Name="FullName">
+              <Get Type="code">
+                <Code>return $this->FirstName . ' ' . $this->LastName;</Code>
+              </Get>
+              <Set Type="code">
+                <Code>list($this->FirstName, $this->LastName) = explode(' ', $value);</Code>  
+              </Set>
+            </Property>
+          </LogicProperties>
+        </Table>
+      </Tables>
+    </ModelLogical>
+  </DataBase>
+  <Mapping Namespace="ClickBlocks\ORMTest">
+    <Classes>
+      <Class Name="Categories" Repository="db_test_0.Categories" Service="ServiceCategories" Orchestra="OrchestraCategories">
+        <Properties>
+          <Property Name="db_test_0.Categories.Parent"/>
+          <Property Name="db_test_0.Categories.Categories"/>
+          <Property Name="db_test_0.Categories.LookupProductAttributes"/>
+          <Property Name="db_test_0.Categories.Products"/>
+          <Property Name="db_test_0.Categories.CategoryID"/>
+          <Property Name="db_test_0.Categories.Name"/>
+          <Property Name="db_test_0.Categories.ParentCategoryID"/>
+        </Properties>
+      </Class>
+      <Class Name="Customers" Repository="db_test_0.Customers" Service="ServiceCustomers" Orchestra="OrchestraCustomers">
+        <Properties>
+          <Property Name="db_test_0.Customers.Orders"/>
+          <Property Name="db_test_0.Customers.CustomerID"/>
+          <Property Name="db_test_0.Customers.Phone"/>
+          <Property Name="db_test_0.Customers.Fax"/>
+          <Property Name="db_test_0.Customers.Country"/>
+          <Property Name="db_test_0.Customers.Parent"/>
+          <Property Name="db_test_0.Customers.Children"/>
+          <Property Name="db_test_0.Customers.ParentCustomerID"/>
+          <Exclude>
+            <Property Name="db_test_0.Users.Customers"/>
+          </Exclude>
+        </Properties>
+      </Class>
+      <Class Name="TestDataTypes" Repository="db_test_0.DataTypes" Service="ServiceTestDataTypes" Orchestra="OrchestraTestDataTypes">
+        <Properties>
+          <Property Name="db_test_0.DataTypes.ID"/>
+          <Property Name="db_test_0.DataTypes.tpTINYINT"/>
+          <Property Name="db_test_0.DataTypes.tpSMALLINT"/>
+          <Property Name="db_test_0.DataTypes.tpMEDIUMINT"/>
+          <Property Name="db_test_0.DataTypes.tpBIGINT"/>
+          <Property Name="db_test_0.DataTypes.tpFLOAT"/>
+          <Property Name="db_test_0.DataTypes.tpDOUBLE"/>
+          <Property Name="db_test_0.DataTypes.tpDECIMAL"/>
+          <Property Name="db_test_0.DataTypes.tpDATE"/>
+          <Property Name="db_test_0.DataTypes.tpDATETIME"/>
+          <Property Name="db_test_0.DataTypes.tpTIMESTAMP"/>
+          <Property Name="db_test_0.DataTypes.tpTIME"/>
+          <Property Name="db_test_0.DataTypes.tpYEAR"/>
+          <Property Name="db_test_0.DataTypes.tpCHAR"/>
+          <Property Name="db_test_0.DataTypes.tpVARCHAR"/>
+          <Property Name="db_test_0.DataTypes.tpTINYBLOB"/>
+          <Property Name="db_test_0.DataTypes.tpBLOB"/>
+          <Property Name="db_test_0.DataTypes.tpMEDIUMBLOB"/>
+          <Property Name="db_test_0.DataTypes.tpLONGBLOB"/>
+          <Property Name="db_test_0.DataTypes.tpTINYTEXT"/>
+          <Property Name="db_test_0.DataTypes.tpTEXT"/>
+          <Property Name="db_test_0.DataTypes.tpMEDIUMTEXT"/>
+          <Property Name="db_test_0.DataTypes.tpLONGTEXT"/>
+          <Property Name="db_test_0.DataTypes.tpENUM"/>
+          <Property Name="db_test_0.DataTypes.tpSET"/>
+          <Property Name="db_test_0.DataTypes.tpBINARY"/>
+          <Property Name="db_test_0.DataTypes.tpVARBINARY"/>
+          <Property Name="db_test_0.DataTypes.tpBIT"/>
+          <Property Name="db_test_0.DataTypes.tpBOOLEAN"/>
+        </Properties>
+      </Class>
+      <Class Name="LookupOrderStatuses" Repository="db_test_0.LookupOrderStatuses" Service="ServiceLookupOrderStatuses" Orchestra="OrchestraLookupOrderStatuses">
+        <Properties>
+          <Property Name="db_test_0.LookupOrderStatuses.Orders"/>
+          <Property Name="db_test_0.LookupOrderStatuses.StatusID"/>
+          <Property Name="db_test_0.LookupOrderStatuses.Status"/>
+        </Properties>
+      </Class>
+      <Class Name="LookupProductAttributes" Repository="db_test_0.LookupProductAttributes" Service="ServiceLookupProductAttributes" Orchestra="OrchestraLookupProductAttributes">
+        <Properties>
+          <Property Name="db_test_0.LookupProductAttributes.Categories"/>
+          <Property Name="db_test_0.LookupProductAttributes.ProductAttributes"/>
+          <Property Name="db_test_0.LookupProductAttributes.AttributeID"/>
+          <Property Name="db_test_0.LookupProductAttributes.CategoryID"/>
+          <Property Name="db_test_0.LookupProductAttributes.Attribute"/>
+        </Properties>
+      </Class>
+      <Class Name="LookupUserTypes" Repository="db_test_0.LookupUserTypes" Service="ServiceLookupUserTypes" Orchestra="OrchestraLookupUserTypes">
+        <Properties>
+          <Property Name="db_test_0.LookupUserTypes.Users"/>
+          <Property Name="db_test_0.LookupUserTypes.TypeID"/>
+          <Property Name="db_test_0.LookupUserTypes.TypeName"/>
+        </Properties>
+      </Class>
+      <Class Name="Managers" Repository="db_test_0.Managers" Service="ServiceManagers" Orchestra="OrchestraManagers">
+        <Properties>
+          <Property Name="db_test_0.Managers.Users"/>
+          <Property Name="db_test_0.Managers.Orders"/>
+          <Property Name="db_test_0.Managers.Products"/>
+          <Property Name="db_test_0.Managers.ManagerID"/>
+          <Property Name="db_test_0.Managers.ContractSigned"/>
+          <Property Name="db_test_0.Managers.Salary"/>
+          <Property Name="db_test_0.Managers.Fired"/>
+        </Properties>
+      </Class>
+      <Class Name="OrderProductOptions" Repository="db_test_0.OrderProductOptions" Service="ServiceOrderProductOptions" Orchestra="OrchestraOrderProductOptions">
+        <Properties>
+          <Property Name="db_test_0.OrderProductOptions.Suppliers"/>
+          <Property Name="db_test_0.OrderProductOptions.OrderProducts"/>
+          <Property Name="db_test_0.OrderProductOptions.ProductAttributeOptions"/>
+          <Property Name="db_test_0.OrderProductOptions.ProductAttributes"/>
+          <Property Name="db_test_0.OrderProductOptions.Products"/>
+          <Property Name="db_test_0.OrderProductOptions.OrderProductOptionID"/>
+          <Property Name="db_test_0.OrderProductOptions.OrderID"/>
+          <Property Name="db_test_0.OrderProductOptions.ProductID"/>
+          <Property Name="db_test_0.OrderProductOptions.SupplierID"/>
+          <Property Name="db_test_0.OrderProductOptions.ProductAttributeID"/>
+          <Property Name="db_test_0.OrderProductOptions.OptionID"/>
+        </Properties>
+      </Class>
+      <Class Name="OrderProducts" Repository="db_test_0.OrderProducts" Service="ServiceOrderProducts" Orchestra="OrchestraOrderProducts">
+        <Properties>
+          <Property Name="db_test_0.OrderProducts.Suppliers"/>
+          <Property Name="db_test_0.OrderProducts.Orders"/>
+          <Property Name="db_test_0.OrderProducts.Products"/>
+          <Property Name="db_test_0.OrderProducts.Stock"/>
+          <Property Name="db_test_0.OrderProducts.OrderProductOptions"/>
+          <Property Name="db_test_0.OrderProducts.OrderID"/>
+          <Property Name="db_test_0.OrderProducts.ProductID"/>
+          <Property Name="db_test_0.OrderProducts.SupplierID"/>
+          <Property Name="db_test_0.OrderProducts.Quantity"/>
+        </Properties>
+      </Class>
+      <Class Name="Orders" Repository="db_test_0.Orders" Service="ServiceOrders" Orchestra="OrchestraOrders">
+        <Properties>
+          <Property Name="db_test_0.Orders.Managers"/>
+          <Property Name="db_test_0.Orders.Customers"/>
+          <Property Name="db_test_0.Orders.LookupOrderStatuses"/>
+          <Property Name="db_test_0.Orders.OrderProducts"/>
+          <Property Name="db_test_0.Orders.OrderID"/>
+          <Property Name="db_test_0.Orders.CustomerID"/>
+          <Property Name="db_test_0.Orders.Created"/>
+          <Property Name="db_test_0.Orders.StatusID"/>
+          <Property Name="db_test_0.Orders.ManagerID"/>
+        </Properties>
+      </Class>
+      <Class Name="ProductAttributeOptions" Repository="db_test_0.ProductAttributeOptions" Service="ServiceProductAttributeOptions" Orchestra="OrchestraProductAttributeOptions">
+        <Properties>
+          <Property Name="db_test_0.ProductAttributeOptions.ProductAttributes"/>
+          <Property Name="db_test_0.ProductAttributeOptions.OrderProductOptions"/>
+          <Property Name="db_test_0.ProductAttributeOptions.OptionID"/>
+          <Property Name="db_test_0.ProductAttributeOptions.ProductAttributeID"/>
+          <Property Name="db_test_0.ProductAttributeOptions.Value"/>
+        </Properties>
+      </Class>
+      <Class Name="ProductAttributes" Repository="db_test_0.ProductAttributes" Service="ServiceProductAttributes" Orchestra="OrchestraProductAttributes">
+        <Properties>
+          <Property Name="db_test_0.ProductAttributes.LookupProductAttributes"/>
+          <Property Name="db_test_0.ProductAttributes.Products"/>
+          <Property Name="db_test_0.ProductAttributes.OrderProductOptions"/>
+          <Property Name="db_test_0.ProductAttributes.ProductAttributeOptions"/>
+          <Property Name="db_test_0.ProductAttributes.ProductAttributeID"/>
+          <Property Name="db_test_0.ProductAttributes.ProductID"/>
+          <Property Name="db_test_0.ProductAttributes.AttributeID"/>
+        </Properties>
+      </Class>
+      <Class Name="Products" Repository="db_test_0.Products" Service="ServiceProducts" Orchestra="OrchestraProducts">
+        <Properties>
+          <Property Name="db_test_0.Products.Managers"/>
+          <Property Name="db_test_0.Products.Categories"/>
+          <Property Name="db_test_0.Products.OrderProductOptions"/>
+          <Property Name="db_test_0.Products.OrderProducts"/>
+          <Property Name="db_test_0.Products.ProductAttributes"/>
+          <Property Name="db_test_0.Products.Stock"/>
+          <Property Name="db_test_0.Products.ProductID"/>
+          <Property Name="db_test_0.Products.Name"/>
+          <Property Name="db_test_0.Products.Description"/>
+          <Property Name="db_test_0.Products.CategoryID"/>
+          <Property Name="db_test_0.Products.ManagerID"/>
+        </Properties>
+      </Class>
+      <Class Name="Stock" Repository="db_test_0.Stock" Service="ServiceStock" Orchestra="OrchestraStock">
+        <Properties>
+          <Property Name="db_test_0.Stock.Suppliers"/>
+          <Property Name="db_test_0.Stock.Products"/>
+          <Property Name="db_test_0.Stock.OrderProducts"/>
+          <Property Name="db_test_0.Stock.ProductID"/>
+          <Property Name="db_test_0.Stock.SupplierID"/>
+          <Property Name="db_test_0.Stock.Quantity"/>
+          <Property Name="db_test_0.Stock.Price"/>
+        </Properties>
+      </Class>
+      <Class Name="Suppliers" Repository="db_test_0.Suppliers" Service="ServiceSuppliers" Orchestra="OrchestraSuppliers">
+        <Properties>
+          <Property Name="db_test_0.Suppliers.OrderProductOptions"/>
+          <Property Name="db_test_0.Suppliers.OrderProducts"/>
+          <Property Name="db_test_0.Suppliers.Stock"/>
+          <Property Name="db_test_0.Suppliers.SupplierID"/>
+          <Property Name="db_test_0.Suppliers.Name"/>
+        </Properties>
+      </Class>
+      <Class Name="Users" Repository="db_test_0.Users" Service="ServiceUsers" Orchestra="OrchestraUsers">
+        <Properties>
+          <Property Name="db_test_0.Users.LookupUserTypes"/>
+          <Property Name="db_test_0.Users.Customers"/>
+          <Property Name="db_test_0.Users.Managers"/>
+          <Property Name="db_test_0.Users.UserID"/>
+          <Property Name="db_test_0.Users.TypeID"/>
+          <Property Name="db_test_0.Users.FirstName"/>
+          <Property Name="db_test_0.Users.LastName"/>
+          <Property Name="db_test_0.Users.Email"/>
+          <Property Name="db_test_0.Users.Password"/>
+          <Property Name="db_test_0.Users.Created"/>
+          <Property Name="db_test_0.Users.Updated"/>
+          <Property Name="db_test_0.Users.Deleted"/>
+          <Property Name="db_test_0.Users.LastActivity"/>
+          <Property Name="db_test_0.Users.FullName"/>
+        </Properties>
+      </Class>
+    </Classes>
+  </Mapping>
+</Config>

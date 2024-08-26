@@ -1,0 +1,56 @@
+<div class="imgeditor_ltBorder"></div>
+<div class="imgeditor_tBorder"></div>
+<div class="imgeditor_rtBorder"></div>
+<div class="imgeditor_lBorder"></div>
+<div class="imgeditor_center">
+  <div class="imgeditor_inputs_data">
+    <p class="imgeditor_title">Image Editor</p>
+    <p class="imgeditor_caption">Edit your image to fit into the webpage</p>
+    <table class="imgeditor_param">
+      <tr class="imgeditor_param_title">
+        <td style="padding-left:0px;">width (px)</td>
+        <td>height (px)</td>
+        <td>bg color</td>
+        <td>rotate</td>
+        <td>zoom</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="padding-left:0px;"><span id="width_<?=$uniqueID;?>">0</span> px</td>
+        <td><span id="height_<?=$uniqueID;?>">0</span> px</td>
+        <td><colorpicker id="backgroundColor" theme="1" value="#FFFFFF" /></td>
+        <td>
+          <table>
+            <tr>
+              <td style="padding:0;"><textbox id="angle" maxlength="6" class="imgeditor_rotate_inp" style="float:none;" /><span>&#176;</span></td>
+              <td><div id="slider_rotate_<?=$uniqueID;?>" class="imgeditor_slider"><div class="imgeditor_snap"></div></div></td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td style="padding:0;"><textbox id="zoom" maxlength="6" class="imgeditor_zoom_inp" style="float:none;" /><span>%</span></td>
+              <td><div id="slider_zoom_<?=$uniqueID;?>" class="imgeditor_slider"><div class="imgeditor_snap"></div></div></td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <checkbox id="isSmartCrop" value="1" visible="0" checked="1" caption=" Smart Crop" />
+        </td>
+        <td><checkbox id="isTransparent" value="1" visible="1" checked="1" caption="  Transparent Background" /></td>
+      </tr>
+    </table>
+    <div id="image_area_<?=$uniqueID;?>" class="imgeditor_image"></div>
+    <div class="imgeditor_panel_buttons">
+      <textbutton id="btnUseThisImage" class="imgeditor_button" value="use this image" />
+      <textbutton id="btnUseOriginal" class="imgeditor_button" value="use original image" visible="0" />
+      <textbutton id="btnCancel" class="imgeditor_button" value="cancel image edit" />
+    </div>
+  </div>
+</div>
+<div class="imgeditor_rBorder"></div>
+<div class="imgeditor_lbBorder"></div>
+<div class="imgeditor_bBorder"></div>
+<div class="imgeditor_rbBorder"></div>
