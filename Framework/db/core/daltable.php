@@ -327,6 +327,7 @@ class DALTable implements IDALTable, \Serializable
 
    public function update()
    {
+      $res = 0;
       if (!$this->isKeyFilled()) throw new \LogicException(err_msg('ERR_DAL_6', array($this->getTable())));
       if ($this->isUpdated) $res = $this->db->update($this->getTable(), $this->getData(), $this->getKeyData());
       $this->isUpdated = false;

@@ -148,6 +148,7 @@ class DB implements IDB
          if ($this->catchException) throw new \Exception($this->error[2]);
          else
          {
+            $time = null;
             self::$statistic[$this->dsn['dsn']][] = array('sql' => $sql, 'data' => $data, 'type' => $type, 'style' => $style, 'time' => $time, 'datetime' => date('Y-m-d H:i:s'));
             Core\Debugger::exceptionHandler(new \Exception($this->error[2]), Core\Logger::LOG_CATEGORY_SQL_EXCEPTION);
             exit;
